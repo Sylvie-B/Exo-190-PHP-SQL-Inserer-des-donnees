@@ -9,7 +9,12 @@ try {
     /**
      * Créez ici votre objet de connection PDO, et utilisez à chaque fois le même objet $pdo ici.
      */
-    $pdo = new P...;
+    $server = 'localhost';
+    $user = 'root';
+    $password = '';
+    $db = 'table_test_php';
+    $pdo = new PDO("mysql:host=$server;dbname=$db;charset=utf8",'root','');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     /**
      * 1. Insérez un nouvel utilisateur dans la table utilisateur.
@@ -47,4 +52,6 @@ try {
      * 6. A l'aide des méthodes beginTransaction, commit et rollBack, insérez trois nouveaux produits dans la table produit.
      */
 }
-catch (...)
+catch (PDOException $e){
+    echo "Une erreur est survenue : ".$e->getMessage();
+}
